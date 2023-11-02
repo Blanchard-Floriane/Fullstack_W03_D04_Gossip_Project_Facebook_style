@@ -6,6 +6,11 @@
   z-index: 9999;
 }
 
+.custom-body {
+  height: 90vh;
+}
+
+
 .hero-color {
   background: linear-gradient(to bottom, #f1c3ce, #d66e94);
   color: #feffff;
@@ -51,8 +56,7 @@
 
 
 .custom-footer {
-  position: fixed;
-  bottom: 0;
+  position: absolute;
   width: 100%;
   height: 60px;
   background-color: #1e1a45;
