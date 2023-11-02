@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
   root to: "gossips#index" #donne l'info sur où se trouve la racine
   get 'team', to: 'static_pages#team'
   get 'contact', to: 'static_pages#contact'

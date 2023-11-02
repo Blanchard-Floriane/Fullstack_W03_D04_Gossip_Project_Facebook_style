@@ -25,7 +25,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body data-turbo="false" class="custom-body">
+  <body data-turbo="false">
 
     <header class="nav-custom fw-light lh-base">
       <%= render 'layouts/navbar' %> <!-- Inclure la barre de navigation ici -->
@@ -44,10 +44,9 @@
       <% end %>
     </div>
 
-    <div class="bloc_principale">
-      <!--Yield is all my page content-->
-      <%= yield %>
-    </div>
+    
+    <!--Yield is all my page content-->
+    <%= yield %>
 
     <!-- footer général -->
     <footer class="custom-footer">
