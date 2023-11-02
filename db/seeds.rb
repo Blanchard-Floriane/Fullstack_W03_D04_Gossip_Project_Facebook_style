@@ -1,11 +1,21 @@
 require 'faker'
 
 # Create cities
-5.times do |i|
+cities = [
+  ["Paris", "75019"],
+  ["Saint-Loup-Cammas", "31140"],
+  ["Marseille", "13015"],
+  ["Paris", "75010"],
+  ["Montpellier", "34070"]
+]
+
+cities.shuffle.each do |city|
+  name = city[0]
+  zip_code = city[1]
+
   City.create!(
-  name: Faker::Address.city, 
-  zip_code: Faker::Address.zip_code
-  )
+    name: name, 
+    zip_code: zip_code)
 end
 
 
@@ -14,24 +24,24 @@ team_players = [
   ["Nellote", "With Stilts", "Je suis Nelly. Je termine actuellement une année sabbatique  de voyage en Amérique du Sud après avoir travaillé une dizaine d’années dans une grosse boite de conseil où j’ai principalement eu un rôle de product owner sur des projets digitaux. 
   Je vais intégrer la promo Automne 2023 full stack dans le but de renforcer mon profil de PO actuel et mieux appréhender les enjeux techniques des différents projets auxquels je suis amenée à participer. 
   En dehors de mes périodes de backpacking en solo et de mon boulot chronophage, je suis bénévole dans un collectif qui organise des soirées électro sur Paris : j’y fais de l scénographie, des performances, de la réduction des risques…
-  Je suis aussi bénévole tous les étés sur divers festivals : Hellfest, Burningman (bon ce n’est pas vraiment un festival), Cabaret Vert, Musicalarue etc…", "32"],
+  Je suis aussi bénévole tous les étés sur divers festivals : Hellfest, Burningman (bon ce n’est pas vraiment un festival), Cabaret Vert, Musicalarue etc…", "32", "thehackingproject1"],
   ["Flo", "Head Shot", "Je m'appelle Floriane, Flo c'est mieux sauf si vous êtes ma grand-mère. J'ai 36 ans, je vis à Toulouse mais originaire de l'Essonne. Après le cursus data, je signe à nouveau et cette fois pour Fullstack.
   Profil atypique, touche-à-tout, j'ai déjà fait pas mal de jobs différents, depuis deux ans je me suis lancée dans le Growth Hacking du coup avoir des skills tech ce ne sera pas du luxe. Mes objectifs apprendre et partager avec la communauté, découvrir de nouvelles personnes et pour le code on verra si c'est mon truc ou pas 🙈 
-  À part ça, j'aime la photo, le parachutisme, la plongée et la rénov (bricoleuse ++)... Et aussi la bière et les cocktails !", "36"],
+  À part ça, j'aime la photo, le parachutisme, la plongée et la rénov (bricoleuse ++)... Et aussi la bière et les cocktails !", "36", "thehackingproject2"],
   ["Sam", "TheWatcher aka You", "Sam, 27 ans, autant d'années passées à Paris 😭
   Je commence la formation développeur demain! 
   Après la biologie, l'administration française et le montage vidéo je me lance dans l'aventure du dev !
   Mes principaux hobbies sont les mangas et le sport
-  Ps. J'ai aussi une grosse passion pour les profils facebook des gens...", "27"],
+  Ps. J'ai aussi une grosse passion pour les profils facebook des gens...", "27", "thehackingproject3"],
   ["Alex", "Aka Gustavo Chiki", "Moi c'est Alex 34 ans et je suis de Fos Sur Mer dans le 13
   Demain c'est le grand jour pour moi depart de la formation dev++ !!
   Cela fait maintenant 5ans que je suis dans la logistique et enfin on tourne la page sur tout sa pour commencer l'aventure avec vous le top!!!
   Sinon perso j'aime la plonger la pétanque le sud le soleil et la mer les jeux vidéos et bien plus. 
-  Voila les amis je vous dis a très vite pour cette aventure .", "34"],
+  Voila les amis je vous dis a très vite pour cette aventure .", "34", "thehackingproject4"],
   ["Axel", "La Merguez", "27 ans, j'ai bossé pendant 6 ans dans un domaine super intéressant, de haute technologie (les laser 🚨 ) sur Bordeaux.
   Je m'éloigne alors un peu du domaine pendant quelques temps, et je me retrouve ici, partant de 0, pour me challenger et entrevoir une potentielle reconversion. J'ai maintenant déménagé et je suis revenu auprès du soleil à MONTPELLIER! ☀️ 
-  Ah oui petit PS : je suis dans la session dev++", "27"],
-  ["Vincent", "Aka Maître Yoda", "Élève promo printemps 2023, j'ai explosé le game et du coup comme j'avais un peu de temps perdu je me suis dit que j'allais pouvoir martyriser un ou deux moussailons avec mes lignes de code propres et efficaces !", "30"]
+  Ah oui petit PS : je suis dans la session dev++", "27", "thehackingproject5"],
+  ["Vincent", "Aka Maître Yoda", "Élève promo printemps 2023, j'ai explosé le game et du coup comme j'avais un peu de temps perdu je me suis dit que j'allais pouvoir martyriser un ou deux moussailons avec mes lignes de code propres et efficaces !", "30", "thehackingproject6"]
 ]
 
 #now create each user
@@ -40,6 +50,7 @@ team_players.shuffle.each do |player|
   last_name = player[1]
   description = player[2]
   age = player[3]
+  password = player[4]
 
   email = "#{first_name.downcase}.#{last_name.downcase.tr(' ', '_').tr('é', 'e').tr('î', 'i')}@gmail.com"
   # tr replace space in last name by underscore
@@ -50,8 +61,8 @@ team_players.shuffle.each do |player|
     description: description,
     email: email,
     age: age,
-    city_id: City.all.sample.id
-  )
+    city_id: City.all.sample.id,
+    password: password)
 end
 
 # Create an hash with associated title and gossip content

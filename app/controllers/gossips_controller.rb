@@ -13,10 +13,13 @@ class GossipsController < ApplicationController
   end
   
   def create #treate infos and save into DB
-    @gossip = Gossip.new(
+    @gossip = Gossip.create(
       'title' => params[:title],
-      'content' => params[:content], 
+      'content' => params[:content],
       'user_id' => User.all.sample.id)
+
+    #mettre le lien avec helper à vérifier
+    #@gossip.new = @gossip.current_user
 
     if @gossip.save
       flash[:success] = "Thanks for your Gossip XOXO"
