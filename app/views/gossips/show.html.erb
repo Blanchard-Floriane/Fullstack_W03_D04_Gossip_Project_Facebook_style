@@ -11,6 +11,14 @@
           <div>City: <%= link_to @gossip.user.city.name, city_path(@gossip.user.city.id), class:"card-text"%></div>
           
           <p class="card-text"><small class="text-muted">Created at: <%= @gossip.created_at %></small></p>
+          
+          <% if current_user == @gossip.user%>
+            <div class="d-flex align-items">
+              <%= link_to "Update", edit_gossip_path, class:"btn btn-pink me-3" %>
+              <%= button_to "Obliviate", gossip_path, method: :delete, class:"btn btn-pink me-2" %>
+            </div>
+          <%end%>
+          
         </div>
       </div>
     </div>
